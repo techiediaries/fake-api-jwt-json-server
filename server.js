@@ -55,7 +55,16 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
     return
   }
   try {
-     verifyToken(req.headers.authorization.split(' ')[1])
+    let verifyTokenResult;
+     verifyTokenResult = verifyToken(req.headers.authorization.split(' ')[1]);
+
+     if (verifyTokenResult instanceof Error) {
+       const status = 401
+       const message = 'Access token not provided'
+       res.status(status).json({status, message})
+       return
+     }
+  
      next()
   } catch (err) {
     const status = 401
