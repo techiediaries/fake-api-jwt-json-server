@@ -30,12 +30,49 @@ function isAuthenticated({email, password}){
   return userdb.users.findIndex(user => user.email === email && user.password === password) !== -1
 }
 
-
-server.post('/auth/login', (req, res) => {
-
-  console.log("login");
+// Register New User
+server.post('/auth/register', (req, res) => {
+  console.log("register endpoint called; request body:");
   console.log(req.body);
-  const {email, password} = req.body
+  const {email, password} = req.body;
+
+  if(isAuthenticated({email, password}) === true) {
+    const status = 401;
+    const message = 'Email and Password already exist';
+    res.status(status).json({status, message});
+    return
+  }
+
+fs.readFile("./users.json", (err, data) => {  
+    if (err) {
+        return console.error(err);
+    };
+
+    var data = JSON.parse(data.toString());
+
+    var last_item_id = data.users[data.users.length-1].id;
+
+    data.users.push({id: last_item_id + 1, email: email, password: password}); //add some data
+    var writeData = fs.writeFile("./users.json", JSON.stringify(data), (err, result) => {  // WRITE
+        if (err) {
+            return console.error(err);
+        } else {
+            console.log(result);
+            console.log("Success");
+        }
+    });
+});
+
+  const access_token = createToken({email, password})
+  console.log("Access Token:" + access_token);
+  res.status(200).json({access_token})
+})
+
+// Login to one of the users from ./users.json
+server.post('/auth/login', (req, res) => {
+  console.log("login endpoint called; request body:");
+  console.log(req.body);
+  const {email, password} = req.body;
   if (isAuthenticated({email, password}) === false) {
     const status = 401
     const message = 'Incorrect email or password'
@@ -64,7 +101,6 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
        res.status(status).json({status, message})
        return
      }
-  
      next()
   } catch (err) {
     const status = 401
