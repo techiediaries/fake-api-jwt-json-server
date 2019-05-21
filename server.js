@@ -45,24 +45,31 @@ server.post('/auth/register', (req, res) => {
 
 fs.readFile("./users.json", (err, data) => {  
     if (err) {
-        return console.error(err);
+      const status = 401
+      const message = err
+      res.status(status).json({status, message})
+      return
     };
 
+    // Get current users data
     var data = JSON.parse(data.toString());
 
+    // Get the id of last user
     var last_item_id = data.users[data.users.length-1].id;
 
+    //Add new user
     data.users.push({id: last_item_id + 1, email: email, password: password}); //add some data
     var writeData = fs.writeFile("./users.json", JSON.stringify(data), (err, result) => {  // WRITE
         if (err) {
-            return console.error(err);
-        } else {
-            console.log(result);
-            console.log("Success");
+          const status = 401
+          const message = err
+          res.status(status).json({status, message})
+          return
         }
     });
 });
 
+// Create token for new user
   const access_token = createToken({email, password})
   console.log("Access Token:" + access_token);
   res.status(200).json({access_token})
