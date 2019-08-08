@@ -6,7 +6,7 @@ A Fake REST API using json-server with JWT authentication. You can find the [com
 
 ```bash
 $ npm install
-$ npm run api-auth
+$ npm run start-auth
 ```
 
 ## How to login?
