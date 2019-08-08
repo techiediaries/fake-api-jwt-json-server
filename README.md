@@ -1,20 +1,28 @@
 # JSONServer + JWT Auth
 
-A Fake REST API using json-server with JWT authentication. You can find the [complete tutorial here](https://www.techiediaries.com/fake-api-jwt-json-server/)
+A Fake REST API using json-server with JWT authentication. 
+
+Implemented End-points: login,register
 
 ## Install
 
 ```bash
 $ npm install
-$ npm run api-auth
+$ npm run start-auth
 ```
 
-## How to login?
+Might need to run
+```
+npm audit fix
+```
 
-You can login by sending a POST request to
+## How to login/register?
+
+You can login/register by sending a POST request to
 
 ```
-POST http://localhost:3000/auth/login
+POST http://localhost:8000/auth/login
+POST http://localhost:8000/auth/register
 ```
 with the following data 
 
