@@ -26,8 +26,14 @@ function verifyToken(token){
 }
 
 // Check if the user exists in database
-function isAuthenticated({email, password}){
-  return userdb.users.findIndex(user => user.email === email && user.password === password) !== -1
+function isAuthenticated({ email, password }) {
+  return (
+    JSON.parse(
+      fs.readFileSync('./users.json', 'UTF-8'),
+    ).users.findIndex(
+      user => user.email === email && user.password === password,
+    ) !== -1
+  );
 }
 
 // Register New User
