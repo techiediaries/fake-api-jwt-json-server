@@ -1,0 +1,18 @@
+POST http://localhost:8000/auth/login
+Content-Type: application/json
+## El body - hi ha d'haver un espai a sota
+{
+  "email": "aamengual@cifpfbmoll.eu",
+  "password":"abcde" 
+}
+
+
+
+### reg
+POST http://localhost:8000/auth/register
+Content-Type: application/json
+## El body - hi ha d'haver un espai a sota
+{
+  "email": "aamengual@cifpfbmoll.eu",
+  "password":"abcde" 
+}
