@@ -1,15 +1,10 @@
 {
-  "name": "json-server-api",
-  "version": "1.0.0",
-  "description": "Simple Fake API",
-  "main": "main.js",
+  "description": "Fake API for registering, authentification and authorisation",
   "scripts": {
-    "start": "json-server --watch ./database.json",
-    "start-auth": "node server.js",
-    "start-dev": "nodemon server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
-  "author": "ME:)",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
     "json-server": "^0.14.2",

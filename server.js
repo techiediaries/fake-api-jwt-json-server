@@ -4,11 +4,17 @@ const jsonServer = require("json-server");
 const jwt = require("jsonwebtoken");
 
 const server = jsonServer.create();
-const router = jsonServer.router("./database.json");
+
+// Route Database
+const router = jsonServer.router("./db.json");
+
+// Read users file
 const userdb = JSON.parse(fs.readFileSync("./users.json", "UTF-8"));
 
+// Body Parser
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
+
 server.use(jsonServer.defaults());
 
 const SECRET_KEY = "123456789";
@@ -28,18 +34,17 @@ function verifyToken(token) {
 }
 
 // Check if the user exists in database
-function isAuthenticated({ email, password }) {
+function isAuthenticated(email, password) {
   return (
-    userdb.users.findIndex(
-      (user) => user.email === email && user.password === password
-    ) !== -1
+    userdb.users.findIndex((user) => {
+      return user.email === email && user.password === password;
+    }) !== -1
   );
 }
 
 // Register New User
 server.post("/auth/register", (req, res) => {
-  console.log("register endpoint called; request body:");
-  console.log(req.body);
+  console.log("register endpoint called; request body:", req.body);
   const { email, password } = req.body;
 
   if (isAuthenticated({ email, password }) === true) {
@@ -59,10 +64,8 @@ server.post("/auth/register", (req, res) => {
 
     // Get current users data
     var data = JSON.parse(data.toString());
-
     // Get the id of last user
     var last_item_id = data.users[data.users.length - 1].id;
-
     //Add new user
     data.users.push({ id: last_item_id + 1, email: email, password: password }); //add some data
     var writeData = fs.writeFile(
@@ -83,44 +86,46 @@ server.post("/auth/register", (req, res) => {
   // Create token for new user
   const access_token = createToken({ email, password });
   console.log("Access Token:" + access_token);
+
+  //Response
   res.status(200).json({ access_token });
 });
 
-//xtoni
-// Login to one of the users from ./users.json
 
+// Login
 server.get("/auth/login", (req, res) => {
-  //Get user and password
-  //xtoni
-  let authHeader = req.headers.authorization;
-  //console.log("authHeader", authHeader)
-  let tipusAuth = authHeader.slice(0, authHeader.indexOf(" ")).trim();
-  let codi = authHeader.slice(authHeader.indexOf(" ")).trim();
   
-let buff = new Buffer(codi, 'base64');
-let text = buff.toString('ascii');
+  // Get authorization header -> el token
+  let codi = req.headers.authorization.split(" ")[1]
 
-console.log(text) 
+  //xtoni - pdt comprovar que és de tipus "Basic" -> LLegir més sobre aquest tema.
+  //let tipusAuth = authHeader.slice(0, authHeader.indexOf(" ")).trim();
 
-  /*
-  console.log("login endpoint called; request body:");
-  console.log(req.body);
-  const {email, password} = req.body;
-*/
-/*
-  if (isAuthenticated({ user, pswd }) === false) {
+  // Decode user & password
+  let buff = new Buffer.from(codi, "base64");
+  let text = buff.toString("ascii");
+
+  let user = text.slice(0, text.indexOf(":")).trim();
+  let pswd = text.slice(text.indexOf(":") + 1).trim();
+
+  //console.log(`U:${user}-P:${pswd}-`);
+
+  if (!isAuthenticated(user, pswd)) {
+    console.log(`-user:${user},pswd=${pswd}-`);
     const status = 401;
     const message = "Incorrect email or password";
     res.status(status).json({ status, message });
     return;
   }
+
   // Retorna el token
-  const access_token = createToken({ email, password });
+  const access_token = createToken({ user, pswd });
   console.log("Access Token:" + access_token);
   res.status(200).json({ access_token });
-  */
 });
 
+// it can't start with  /auth
+// xtoni Is ? useful?
 server.use(/^(?!\/auth).*$/, (req, res, next) => {
   if (
     req.headers.authorization === undefined ||

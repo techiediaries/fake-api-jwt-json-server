@@ -1,5 +1,10 @@
 # JSONServer + JWT Auth
 
+## TODO - CHANGES
+
+- [ ] Using Authentication header for login
+- [ ] Login only checks if user is authenticated (should it return a token???)
+
 A Fake REST API using json-server with JWT authentication. 
 
 Implemented End-points: login,register
