@@ -35,8 +35,8 @@ $ npm run dev
 ## How to register?
 You can register by sending a POST request to
 ```
-POST http://localhost:3000/auth/login
-POST http://localhost:3000/auth/register
+POST http://localhost:3001/auth/login
+POST http://localhost:3001/auth/register
 ```
 
 with the following data in body

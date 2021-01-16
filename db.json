@@ -1,126 +1,52 @@
 {
-  "products": [
-    {
-      "id": 1,
-      "name": "Product001",
-      "cost": 10,
-      "quantity": 1000,
-      "locationId": 1,
-      "familyId": 1
-    },
-    {
-      "id": 2,
-      "name": "Product002",
-      "cost": 20,
-      "quantity": 2000,
-      "locationId": 1,
-      "familyId": 2
-    },
-    {
-      "id": 3,
-      "name": "Product003",
-      "cost": 30,
-      "quantity": 3000,
-      "locationId": 3,
-      "familyId": 2
-    },
-    {
-      "id": 4,
-      "name": "Product004",
-      "cost": 40,
-      "quantity": 4000,
-      "locationId": 2,
-      "familyId": 3
-    },
-    {
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "id": 7
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "id": 12
-    },
-    {
-      "id": 13
-    },
-    {
-      "id": 14
-    },
-    {
-      "id": 15
-    },
-    {
-      "id": 16
-    },
-    {
-      "id": 17
-    },
-    {
-      "id": 18
-    }
-  ],
-  "locations": [
-    {
-      "id": 1,
-      "name": "Location001"
-    },
-    {
-      "id": 2,
-      "name": "Location002"
-    },
-    {
-      "id": 3,
-      "name": "Location003"
-    }
-  ],
-  "families": [
-    {
-      "id": 1,
-      "name": "FM001"
-    },
-    {
-      "id": 2,
-      "name": "FM002"
-    },
-    {
-      "id": 3,
-      "name": "FM003"
-    }
-  ],
-  "transactions": [
-    {
-      "id": 1,
-      "cost": 11,
-      "quantity": 10,
-      "productId": 1
-    },
-    {
-      "id": 2,
-      "cost": 12,
-      "quantity": 100,
-      "productId": 2
-    },
-    {
-      "id": 3,
-      "cost": 15,
-      "quantity": 101,
-      "productId": 3
-    }
-  ]
+  "personatges": [
+  {
+    "id": 1,
+    "name": "Tomeu Scracker",
+    "motto": "Right now, I'm letting you live. And I'll continue to keep you alive... until you've grown enough to become worth killing.",
+    "img": "https://raw.githubusercontent.com/classicoman2/fakeRESTserver/master/assets/personatge1.png"
+  },
+  {
+    "id": 2,
+    "name": "Miki Barcolicus",
+    "motto": "Electricity doesn't hurt me. When I said it doesn't hurt me, it means I can bare it. None the less, I feel the pain. That's why I'm a bit annoyed...",
+    "img": "https://raw.githubusercontent.com/classicoman2/fakeRESTserver/master/assets/personatge2.png"
+  },
+  {
+    "id": 3,
+    "name": "Tonina Constructor",
+    "motto": "I do not fear death. I fear only that my rage will fade over time.",
+    "img": "https://raw.githubusercontent.com/classicoman2/fakeRESTserver/master/assets/personatge3.png"
+  },
+  {
+    "id": 4,
+    "name": "Olivia Riudavets",
+    "motto": "If you wanna stop this, then stand up! Because I've just got one thing to say to you! Never forget who you want to become!",
+    "img": "https://raw.githubusercontent.com/classicoman2/fakeRESTserver/master/assets/personatge4.png"
+  },
+  {
+    "id": 5,
+    "name": "John Kuhn Tagomago",
+    "motto": "100 push-ups, 100 sit-ups, 100 squats, and a 10km run EVERY SINGLE DAY!!!",
+    "img": "https://raw.githubusercontent.com/classicoman2/fakeRESTserver/master/assets/personatge5.png"
+  },
+  {
+    "id": 6,
+    "name": "Vincent Van der Grosse",
+    "motto": "When I heard that they were after my buddy...I couldn't do anything!! I didn't do anything!! If I don't act now...forget being a hero, I'm not even a man!",
+    "img": "https://raw.githubusercontent.com/classicoman2/fakeRESTserver/master/assets/personatge6.png"
+  },
+  {
+    "id": 7,
+    "name": "Tom Slaughterhouse",
+    "motto": "I'm sorry to tell you... that for the next three years... U.A. will run you through the wringer. Use your strength to overcome it all. So bring it",
+    "img": "https://raw.githubusercontent.com/classicoman2/fakeRESTserver/master/assets/personatge7.png"
+  },
+  {
+    "id": 8,
+    "name": "Mindy Sanostren",
+    "motto": "I'm not gonna be your worthless punching bag Deku forever... Kacchan. I'm... I'm the Deku who always does his best!",
+    "img": "https://raw.githubusercontent.com/classicoman2/fakeRESTserver/master/assets/personatge8.png"
+  }
+]
 }
