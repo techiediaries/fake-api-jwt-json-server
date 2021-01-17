@@ -1,5 +1,22 @@
 # JSONServer + JWT Auth
-[Forked from](https://github.com/techiediaries/fake-api-jwt-json-server)
+[Forked from here](https://github.com/techiediaries/fake-api-jwt-json-server)
+
+## Table of contents
+
+<!-- toc -->
+
+- [Intro](#intro)
+- [TODO - CHANGES](#todo---changes)
+- [Install](#install)
+- [Run](#run)
+- [How to register?](#how-to-register)
+- [How to Login?](#how-to-login)
+- [How to use API?](#how-to-use-api)
+- [Webgraphy](#webgraphy)
+
+<!-- tocstop -->
+
+## Intro
 
 A Fake REST API using json-server with JWT authentication. 
 Implemented End-points: 
@@ -21,7 +38,7 @@ Might need to run
 $ npm audit fix
 ```
 
-## Run
+## Run 
 ```bash
 $ npm start
 ```
