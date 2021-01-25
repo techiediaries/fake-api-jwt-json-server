@@ -1,5 +1,5 @@
 # JSONServer + JWT Auth
-[Forked from here](https://github.com/techiediaries/fake-api-jwt-json-server)
+A Fake Rest API using registration, authentification and authorization, taking advantage of [jsonwebtoken package](https://www.npmjs.com/package/jsonwebtoken). [Forked from here](https://github.com/techiediaries/fake-api-jwt-json-server).
 
 ## Table of contents
 
@@ -56,11 +56,11 @@ POST http://localhost:3001/auth/login
 POST http://localhost:3001/auth/register
 ```
 
-with the following data in body
+with the following data in body (basic example)
 ```
 {
-  "email": "nilson@email.com",
-  "password":"nilson"
+  "email": "pepe@email.com",
+  "password":"1234567"
 }
 ```
 
@@ -72,17 +72,15 @@ with the following data in body
 ```
 
 ## How to Login?
-- Use `Basic Auth` and send username and password in the headers. 
-- You should receive an access token with the following format 
+- Use `Basic Auth` to send username and password in the headers. You should receive an access token with the following format:
 ```json
 {
    "access_token": "<ACCESS_TOKEN>"
 }
 ```
 
-## How to use API?
-Send the authorization with any request to the protected endpoints
-
+## How to access the API?
+To access the API, send the authorization token (Bearer) with any request to the protected endpoints,
 ```
 Authorization: Bearer <ACCESS_TOKEN>
 ```
@@ -92,6 +90,6 @@ Check out these tutorials:
 - [Mocking a REST API Back-End for Your Angular App with JSON-Server and Faker.js](https://www.techiediaries.com/angular-mock-backend)
 - [Building a Fake and JWT Protected REST API with json-server](https://www.techiediaries.com/fake-api-jwt-json-server)
 - [Angular 9 Tutorial: Build an Example App with Angular CLI, Angular Router, HttpClient & Angular Material](https://www.shabang.dev/angular-tutorial-build-an-example-app-with-angular-cli-router-httpclient-and-angular-material/)
-
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) npm package
 
 
