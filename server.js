@@ -73,6 +73,7 @@ fs.readFile("./users.json", (err, data) => {
   const access_token = createToken({email, password})
   console.log("Access Token:" + access_token);
   res.status(200).json({access_token})
+  res.send()
 })
 
 // Login to one of the users from ./users.json
@@ -84,11 +85,12 @@ server.post('/auth/login', (req, res) => {
     const status = 401
     const message = 'Incorrect email or password'
     res.status(status).json({status, message})
-    return
+    res.send()
   }
   const access_token = createToken({email, password})
   console.log("Access Token:" + access_token);
   res.status(200).json({access_token})
+  res.send()
 })
 
 server.use(/^(?!\/auth).*$/,  (req, res, next) => {
@@ -96,7 +98,7 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
     const status = 401
     const message = 'Error in authorization format'
     res.status(status).json({status, message})
-    return
+    res.send()
   }
   try {
     let verifyTokenResult;
@@ -106,13 +108,14 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
        const status = 401
        const message = 'Access token not provided'
        res.status(status).json({status, message})
-       return
+       res.send()
      }
      next()
   } catch (err) {
     const status = 401
     const message = 'Error access_token is revoked'
     res.status(status).json({status, message})
+    res.send()
   }
 })
 
