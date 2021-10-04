@@ -1,23 +1,26 @@
-const fs = require('fs')
-const bodyParser = require('body-parser')
-const jsonServer = require('json-server')
-const jwt = require('jsonwebtoken')
+const jsonFileForUsers = 'users.json';
+const jsonFileForData = 'database.json';
 
-const server = jsonServer.create()
-const router = jsonServer.router('./database.json')
-const userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
+const SECRET_KEY = 'ectawgwkpagm' // this is the secret key for the authorization
+const expiresIn = '1h' // this is the expiration time for jwt token
 
-server.use(bodyParser.urlencoded({extended: true}))
-server.use(bodyParser.json())
+const fs = require('fs');
+const express = require('express');
+const jsonServer = require('json-server');
+const jwt = require('jsonwebtoken');
+
+const server = jsonServer.create();
+const router = jsonServer.router(`./${jsonFileForData}`);
+const userdb = JSON.parse(fs.readFileSync(`./${jsonFileForUsers}`, 'UTF-8'));
+
+server.use(express.urlencoded({extended: true}));
+server.use(express.json());
 server.use(jsonServer.defaults());
 
-const SECRET_KEY = '123456789'
-
-const expiresIn = '1h'
 
 // Create a token from a payload 
 function createToken(payload){
-  return jwt.sign(payload, SECRET_KEY, {expiresIn})
+  return jwt.sign(payload, SECRET_KEY, {expiresIn});
 }
 
 // Verify the token 
@@ -43,7 +46,7 @@ server.post('/auth/register', (req, res) => {
     return
   }
 
-fs.readFile("./users.json", (err, data) => {  
+fs.readFile(`./${jsonFileForUsers}`, (err, data) => {  
     if (err) {
       const status = 401
       const message = err
@@ -52,14 +55,14 @@ fs.readFile("./users.json", (err, data) => {
     };
 
     // Get current users data
-    var data = JSON.parse(data.toString());
+    let dataObj = JSON.parse(data.toString());
 
     // Get the id of last user
-    var last_item_id = data.users[data.users.length-1].id;
+    let last_item_id = dataObj.users[dataObj.users.length-1].id;
 
     //Add new user
-    data.users.push({id: last_item_id + 1, email: email, password: password}); //add some data
-    var writeData = fs.writeFile("./users.json", JSON.stringify(data), (err, result) => {  // WRITE
+    dataObj.users.push({id: last_item_id + 1, email: email, password: password}); //add some data
+    fs.writeFile(`./${jsonFileForUsers}`, JSON.stringify(dataObj), (err, result) => {  // WRITE
         if (err) {
           const status = 401
           const message = err
@@ -75,7 +78,7 @@ fs.readFile("./users.json", (err, data) => {
   res.status(200).json({access_token})
 })
 
-// Login to one of the users from ./users.json
+// User Login
 server.post('/auth/login', (req, res) => {
   console.log("login endpoint called; request body:");
   console.log(req.body);
