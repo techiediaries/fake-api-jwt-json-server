@@ -1,7 +1,5 @@
 # JSONServer + JWT Auth
 
-// new line added
-
 A Fake REST API using json-server with JWT authentication.
 
 Implemented End-points: login,register
