@@ -10,7 +10,7 @@
   "author": "ME:)",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "json-server": "^0.14.2",
     "jsonwebtoken": "^8.1.0"
   }
